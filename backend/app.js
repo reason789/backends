@@ -45,12 +45,11 @@ app.use(
 
 app.use(
   cors({
-    origin: "https://seaside789.netlify.app",
+    origin: ["http://localhost:3000", "https://seasidee.netlify.app"],
     methods: "GET,POST,PUT,DELETE",
     credentials: true,
   })
 );
-
 // Route Imports
 const user = require("./routes/userRoute");
 const hotel = require("./routes/hotelRoute");
