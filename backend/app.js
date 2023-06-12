@@ -50,6 +50,13 @@ app.use(
 //     credentials: true,
 //   })
 // );
+
+// app.use(
+//   cors({
+//     origin: "http://localhost:3000",
+//     credentials: true,
+//   })
+// );
 // Route Imports
 const user = require("./routes/userRoute");
 const hotel = require("./routes/hotelRoute");
