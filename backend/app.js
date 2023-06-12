@@ -43,20 +43,20 @@ app.use(
 // app.use(passport.initialize());
 // app.use(passport.session());
 
-// app.use(
-//   cors({
-//     origin: ["http://localhost:3000", "https://seasidee.netlify.app"],
-//     methods: "GET,POST,PUT,DELETE",
-//     credentials: true,
-//   })
-// );
-
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: ["http://localhost:3000", "https://seasidee.netlify.app"],
+    methods: "GET,POST,PUT,DELETE",
     credentials: true,
   })
 );
+
+// app.use(
+//   cors({
+//     origin: "http://localhost:3000",
+//     credentials: true,
+//   })
+// );
 // Route Imports
 const user = require("./routes/userRoute");
 const hotel = require("./routes/hotelRoute");
