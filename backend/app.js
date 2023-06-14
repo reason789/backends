@@ -12,36 +12,17 @@ const fileUpload = require("express-fileupload");
 
 const errorMiddleware = require("./middleware/error");
 
-const passport = require("passport");
-const passport_setup = require("./config/passport");
-const cookieSession = require("cookie-session");
 const authRoute = require("./routes/authRoute");
 
 app.use(cookieParser());
-// app.use(express.json());
-// app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(fileUpload());
 
 app.use(express.json({ limit: "20mb" }));
-// app.use(express.urlencoded({ extended: true, limit: '10mb' }));
-// app.use(bodyParser.urlencoded({ extended: true, limit: "10mb" }));
 app.use(bodyParser.urlencoded({ extended: true, limit: "20mb" }));
 app.use(
   fileUpload({
     limits: { fileSize: 50 * 1024 * 1024 }, // Increase the limit as per your requirement
   })
 );
-
-// app.use(
-//   cookieSession({
-//     name: "session",
-//     keys: ["process.env.GOOGLE_COKKIE_SESSION"],
-//     maxAge: 24 * 60 * 60 * 100,
-//   })
-// );
-
-// app.use(passport.initialize());
-// app.use(passport.session());
 
 app.use(
   cors({
@@ -51,13 +32,6 @@ app.use(
   })
 );
 
-// app.use(
-//   cors({
-//     origin: "http://localhost:3000",
-//     credentials: true,
-//   })
-// );
-// Route Imports
 const user = require("./routes/userRoute");
 const hotel = require("./routes/hotelRoute");
 const room = require("./routes/roomRoute");
