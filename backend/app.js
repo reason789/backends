@@ -24,13 +24,16 @@ app.use(
   })
 );
 
-app.use(
-  cors({
-    origin: ["http://localhost:3000", "https://seasidee.netlify.app"],
-    methods: "GET,POST,PUT,DELETE",
-    credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     origin: ["http://localhost:3000", "https://seasidee.netlify.app"],
+//     methods: "GET,POST,PUT,DELETE",
+//     credentials: true,
+//     origin: true
+//   })
+// );
+
+app.use(cors({ credentials: true, origin: true }));
 
 const user = require("./routes/userRoute");
 const hotel = require("./routes/hotelRoute");
