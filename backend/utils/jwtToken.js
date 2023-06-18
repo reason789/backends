@@ -1,4 +1,4 @@
-// Create Token and saving in cookie
+const { cookie } = require("@netlify/functions");
 
 const sendToken = (user, statusCode, res) => {
   // console.log(user);
@@ -10,6 +10,8 @@ const sendToken = (user, statusCode, res) => {
       Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000 // converted into miliSecond
     ),
     httpOnly: true,
+    // secure: true,
+    sameSite: "None",
   };
 
   res.status(statusCode).cookie("token", token, options).json({

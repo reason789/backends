@@ -5,7 +5,11 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 
 // Config // when working with stripe
-dotenv.config({ path: "backend/config/config.env" });
+// dotenv.config({ path: "backend/config/config.env" });
+
+if (process.env.NODE_ENV !== "PRODUCTION") {
+  require("dotenv").config({ path: "backend/config/config.env" });
+}
 
 const bodyParser = require("body-parser"); // eta  image upload krr tym a lagse..agee lage nai
 const fileUpload = require("express-fileupload");
@@ -24,13 +28,22 @@ app.use(
   })
 );
 
-app.use(
-  cors({
-    origin: ["http://localhost:3000", "https://seasidee.netlify.app"],
-    methods: "GET,POST,PUT,DELETE",
-    credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     origin: ["http://localhost:3000", "https://seasidee.netlify.app"],
+//     methods: "GET,POST,PUT,DELETE",
+//     credentials: true,
+//   })
+// );
+
+const corsOptions = {
+  origin: ["http://localhost:3000", "https://seasidee.netlify.app"],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  // allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 
 const user = require("./routes/userRoute");
 const hotel = require("./routes/hotelRoute");

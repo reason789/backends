@@ -16,7 +16,11 @@ process.on("uncaughtException", (err) => {
 // console.log(reason)
 
 // Config
-dotenv.config({ path: "backend/config/config.env" });
+// dotenv.config({ path: "backend/config/config.env" });
+
+if (process.env.NODE_ENV !== "PRODUCTION") {
+  require("dotenv").config({ path: "backend/config/config.env" });
+}
 
 // Database
 connectDatabase();
@@ -29,11 +33,15 @@ cloudinary.config({
 });
 
 // Create HTTP server
-const server = require("http").createServer(app);
+// const server = require("http").createServer(app);
 
-// Start server
-server.listen(process.env.PORT, () => {
-  console.log(`Server is running on http://localhost:${process.env.PORT}`);
+// // Start server
+// server.listen(process.env.PORT, () => {
+//   console.log(`Server is running on http://localhost:${process.env.PORT}`);
+// });
+
+const server = app.listen(process.env.PORT, () => {
+  console.log(`Server is working on http://localhost:${process.env.PORT}`);
 });
 
 process.on("unhandledRejection", (err) => {
