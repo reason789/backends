@@ -1,5 +1,3 @@
-const { cookie } = require("@netlify/functions");
-
 const sendToken = (user, statusCode, res) => {
   // console.log(user);
   const token = user.getJWTToken();
